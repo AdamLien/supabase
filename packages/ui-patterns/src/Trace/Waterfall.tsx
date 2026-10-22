@@ -97,22 +97,24 @@ export function Ruler({ className, children, ...props }: ComponentProps<'div'>) 
         Span
       </div>
       <div aria-hidden className="relative min-w-0 flex-1 select-none overflow-hidden">
-        {scale.ticks.map((tick) => (
-          <div
-            key={tick.ms}
-            data-trace-tick
-            className={cn(
-              'absolute inset-y-0',
-              tick.fraction > 0 && 'border-l border-strong',
-              LIVE_GROWTH_TRANSITION
-            )}
-            style={{ left: `${tick.fraction * 100}%` }}
-          >
-            <span className="absolute left-2 top-1/2 -translate-y-1/2 whitespace-nowrap font-mono text-xs tabular-nums text-foreground-muted">
-              {tick.label}
-            </span>
-          </div>
-        ))}
+        <div className="absolute inset-y-0 left-0 w-[calc(100%+1px)]">
+          {scale.ticks.map((tick) => (
+            <div
+              key={tick.ms}
+              data-trace-tick
+              className={cn(
+                'absolute inset-y-0',
+                tick.fraction > 0 && 'border-l border-strong',
+                LIVE_GROWTH_TRANSITION
+              )}
+              style={{ left: `${tick.fraction * 100}%` }}
+            >
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 whitespace-nowrap font-mono text-xs tabular-nums text-foreground-muted">
+                {tick.label}
+              </span>
+            </div>
+          ))}
+        </div>
       </div>
       <div
         data-trace-controls
@@ -133,7 +135,7 @@ export function Grid({ className, ...props }: ComponentProps<'div'>) {
         aria-hidden
         data-trace-grid
         className={cn(
-          'pointer-events-none absolute left-(--trace-tree-width) right-[calc(var(--trace-controls-width)+1px)] top-0 h-(--trace-waterfall-height) overflow-hidden',
+          'pointer-events-none absolute left-(--trace-tree-width) right-(--trace-controls-width) top-0 h-(--trace-waterfall-height) overflow-hidden',
           className
         )}
         {...props}
@@ -165,7 +167,7 @@ export function Cursor({ className, ...props }: ComponentProps<'div'>) {
         aria-hidden
         data-trace-cursor-track
         className={cn(
-          'pointer-events-none absolute left-(--trace-tree-width) right-[calc(var(--trace-controls-width)+1px)] top-[calc(var(--trace-ruler-height)*-1)] h-(--trace-waterfall-height) overflow-hidden',
+          'pointer-events-none absolute left-(--trace-tree-width) right-(--trace-controls-width) top-[calc(var(--trace-ruler-height)*-1)] h-(--trace-waterfall-height) overflow-hidden',
           className
         )}
         {...props}
