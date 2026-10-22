@@ -81,6 +81,7 @@ export interface ViewContextValue {
   isZoomed: boolean
   select: (id: string | null) => void
   setCollapsed: (id: string, collapsed: boolean) => void
+  toggleCollapseAll: () => void
   setWindow: (start: number, end: number) => void
   resetWindow: () => void
   treeRef: RefObject<HTMLDivElement | null>
