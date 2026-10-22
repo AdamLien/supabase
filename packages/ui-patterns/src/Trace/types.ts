@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from 'react'
+import type { ComponentProps, ReactNode, RefObject } from 'react'
 
 export type SpanStatus = 'ok' | 'error' | 'unset'
 
@@ -83,6 +83,7 @@ export interface ViewContextValue {
   setCollapsed: (id: string, collapsed: boolean) => void
   setWindow: (start: number, end: number) => void
   resetWindow: () => void
+  treeRef: RefObject<HTMLDivElement | null>
 }
 
 export interface SpanContextValue {
